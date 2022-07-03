@@ -1,0 +1,19 @@
+.book-card {
+    border-radius: 10px;
+    background-color: rgb(247, 240, 232);
+}
+.no-image {
+    align-items: center;
+    border: 1px solid #dadce0;
+    color: #70757a;
+    display: flex;
+    height: 140px;
+    line-height: 16px;
+    width: 100px;
+    display: block;
+}
+.no-img {
+    flex-grow: 1;
+    padding: 8px;
+    text-align: center;
+}

@@ -7,31 +7,30 @@ import { useState } from "react"
 
 export default function BookGrid() {
     const [search, setSearch] = useState("")
-    const [results, setResults] = useState({})
-    console.log()
-
+    const [results, setResults] = useState([])
+    
     async function getSearch(search) {
-        console.log(search)
-        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=20`)
-        console.log(response.data)
-        //setResults(response)
+        if (!search) return;
+        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=25`)
+        setResults(response.data.items)
+        console.log(results)
     }
 
 
 
     return (
         //<button onClick={(search) => getSearch(search)}>here</button>
-        <div className="grid">
-            <h1> Book Search </h1>
+        <div className="search">
             <form>
                 <input onChange={(e) => {
                     setSearch(e.target.value)
                 }} className="bar" placeholder="Type Here" />             
             </form>
-
-            <button onClick={() => getSearch(search)}>here</button>
-            <div className="results">
-                <BookCard results={results}/>
+            <button onClick={() => getSearch(search)}>search</button>
+            <div className="grid">
+                {results.map((b, idx) => {
+                    return <BookCard key={idx} results={results} book={b.volumeInfo} imageArr={b.volumeInfo.imageLinks?.thumbnail}/>
+                })}
             </div>
         </div>
     )

@@ -1,0 +1,27 @@
+.navbar {
+    list-style-type: none;
+    margin-right: 100px;
+    padding: 0;
+    overflow: hidden;
+    background-color:rgb(23, 11, 43);
+  }
+  #nav-button {
+      display: block;
+      color: rgb(255, 240, 221);
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      float:left;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      padding: 25px;
+      font-size: 20px;
+      margin: 0px;
+    }
+    #nav-button:hover {
+      background-color: rgb(84, 48, 142);
+    }
+    img {
+      height: 80px;
+      width: auto;
+    }
+    

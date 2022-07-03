@@ -1,3 +1,23 @@
 .grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
 }
+
+@media screen and (max-width: 1350px){
+    .grid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1070px){
+    .grid{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media screen and (max-width: 700px){
+    .grid{
+        grid-template-columns: 1fr;
+    }
+}
+
