@@ -7,7 +7,7 @@ export default function NavBar() {
     <nav className="navbar">
       <Link to="/"><p id="nav-button">Home</p></Link>
       <Link to="/search"><p id="nav-button">Search</p></Link>
-      <a id="nav-button" href="#buy-now">My Library</a>
+      <Link to="/library"><p id="nav-button">My Library</p></Link>
       <a id="nav-button" href="#about-us">Playlist Gen</a> |
     </nav>
     )
