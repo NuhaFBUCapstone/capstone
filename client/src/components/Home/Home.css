@@ -1,3 +1,78 @@
-.header {
-    
+
+.home {
+    padding: 20px;
 }
+
+h3 {
+    background-color: rgb(225, 207, 190);    
+    font-size: 30px;
+    padding: 60px;
+}
+
+.about-us {
+    background-color: rgb(225, 207, 190);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 26px;
+}
+
+.about-text {
+    inline-size: 57%; 
+    font-size: 20px;
+    line-height: 45px;
+    margin-left: 30px;
+}
+
+.header {
+    margin-top: 30px;
+    padding-top: 90px;
+    background-color: rgb(225, 207, 190);    
+    height: 10vh;
+    font-size: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+.trend-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    background-color: rgb(225, 207, 190);
+    padding: 50px;
+}
+.trend-box .carousel {
+    flex: 1;
+}
+
+.trends {
+    height: 200px;
+    width: auto;
+}
+.text {
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    height: 80px;
+    text-align: center;
+}
+
+.carousel {
+    width: 100%;
+    padding: 17px;
+    background-color: white;
+    margin-left: 20px;
+    /* box-shadow: 10px 10px 38px -16px rgba(0,0,0,0.72);
+    -webkit-box-shadow: 10px 10px 38px -16px rgba(0,0,0,0.72);
+    -moz-box-shadow: 10px 10px 38px -16px rgba(0,0,0,0.72); */
+    box-shadow: 10px 10px 38px -19px rgba(0,0,0,0.59);
+    -webkit-box-shadow: 10px 10px 38px -19px rgba(0,0,0,0.59);
+    -moz-box-shadow: 10px 10px 38px -19px rgba(0,0,0,0.59);
+}
+
+@media (max-width: 400px) {
+    .flex-grid {      
+        display: block;
+    }
+  }

@@ -13,7 +13,6 @@ export default function BookGrid() {
         if (!search) return;
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=25`)
         setResults(response.data.items)
-        console.log(results)
     }
 
 
@@ -31,6 +30,7 @@ export default function BookGrid() {
             </div>
             <div className="grid">
                 {results.map((b, idx) => {
+                    console.log(b);
                     return <BookCard key={idx} results={results} book={b.volumeInfo} imageArr={b.volumeInfo.imageLinks?.thumbnail}/>
                 })}
             </div>

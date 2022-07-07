@@ -8,7 +8,7 @@ export default function NavBar() {
       <Link to="/"><p id="nav-button">Home</p></Link>
       <Link to="/search"><p id="nav-button">Search</p></Link>
       <Link to="/library"><p id="nav-button">My Library</p></Link>
-      <a id="nav-button" href="#about-us">Playlist Gen</a> |
+      <Link to="/playlist"><p id="nav-button">Playlist Gen</p></Link>
     </nav>
     )
 }
