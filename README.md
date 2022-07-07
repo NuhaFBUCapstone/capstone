@@ -1,10 +1,41 @@
-# capstone
-App Idea: A book searching app similar to Goodreads that allows you to create lists and save books to your library. Also contains a page that incorporates the Spotify API to create a playlist based off a given book.
+**Product Spec**
 
-**User Roles**
+ - A social book cataloguing app that allows you to create lists and save books to those lists.
+ - Contains a page that incorporates the Spotify API to create a playlist based off a given book.
+ - Allows you to send and accept/reject friend requests and view friends' public lists
 
- - The user wants to search for and create and save lists of
-   books and generate playlists based off books/genres.
+**Components and Features**
+
+ - Search
+		 - search by title or author
+		 - clicking on books takes you to a book detail page
+  - Home
+		 - see showcase of trending books
+		 - Login/Signup option if not already logged in
+		 - About Us section
+ - My Library
+		 - display user's lists (user specific information)
+		 - "read" list is already created for every user, other lists can be created
+		 - allow user to set/create public and private lists
+		 - see friends lists here?
+ - Playlist
+		 - search for a book
+		 - user can add preferences/filters to search; for example they can check the instrumental box to get only instrumental songs
+		 - user can choose length of playlist
+		 - returns a list of songs 
+		 - allow option to create a Spotify playlist with the songs
+ - Book Details
+		 - when clicking on a book from the search page or in My Library, a full book detail page opens
+		 - includes user rating + review along with synopsis, publication date, author, etc. 
+		 - allow option to add to a list
+		 - also include friends rating + reviews ?
+ - Profile
+		 - see list of friends
+		 - user stats--how many pages and books read, average rating given, etc. (based off "read" list)
+		 - viewable from popup tab on upper right corner of screen
+		 - Logout option
+
+**Wireframes:** https://www.figma.com/file/Z8rZ9U3uHcNYSy41EQV7P6/goodreads?node-id=0%3A1
 
 **User Stories**
 
