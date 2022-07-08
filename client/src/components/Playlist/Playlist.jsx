@@ -21,6 +21,7 @@ export default function Playlist() {
             window.location.hash = ""
             window.localStorage.setItem("token", token)
             setToken(token)
+            console.log(token)
         }
       },[])    
 

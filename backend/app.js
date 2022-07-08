@@ -2,16 +2,15 @@ const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
 const Parse = require('parse/node');
-const { query } = require('express');
-
+const playlistRoute = require("./routes/playlist")
 const app = express()
-
-const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
 
 app.use(cors())
 app.use(morgan('tiny'))
 app.use(express.json())
+app.use("/playlist", playlistRoute)
 
+const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
 Parse.initialize("3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY", "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA", MASTERKEY);
 Parse.serverURL = 'http://parseapi.back4app.com/'
 
@@ -52,7 +51,7 @@ app.post('/logout', async (req, res) => {
     }
   })
 } catch (err) {
-  
+
 }
 })
 
