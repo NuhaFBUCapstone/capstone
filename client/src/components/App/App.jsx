@@ -1,22 +1,22 @@
 import * as React from "react"
+import axios from "axios"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import { useState, useEffect } from "react"
 import BookGrid from "../BookGrid/BookGrid"
 import NavBar from "../NavBar/NavBar"
-import Home from "../LoggedOut/LoggedOut"
 import BookDetail from "../BookDetail/BookDetail"
 import Library from "../Library/Library"
 import Playlist from "../Playlist/Playlist"
-import axios from "axios"
-
+import LoggedOut from "../LoggedOut/LoggedOut"
+import Home from "../Home/Home"
 
 export default function App() {
+    const [sessionToken, setSessionToken] = useState("")
+
     const [trends, setTrends] = useState([])
     const [fetching, setFetching] = useState(false)
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("current_user_id") !== null)
 
     async function getTrending() {
-        //might move to Home.jsx since it's not used anywhere else (maybe use in Spotify recommended search)
         setFetching(true)
         try {
             const response = await axios.get(`https://openlibrary.org/trending/daily.json`)
@@ -30,32 +30,18 @@ export default function App() {
         getTrending()
       },[])
 
-    
-  const handleLogout = () => {
-    localStorage.removeItem("current_user_id")
-    axios.defaults.headers.common = {};
-    setIsLoggedIn(false)
-  }
-
-  const handleLogin = (user) => {
-    console.log(user)
-    localStorage.setItem("current_user_id", user["objectId"])
-    addAuthenticationHeader()
-
-    setIsLoggedIn(true)
-  }
-
     return (
         <div className="app">
             <BrowserRouter>
-            <NavBar/>
+            <NavBar setSessionToken={setSessionToken} sessionToken={sessionToken}/>
             <Routes>
-                {/* in logged out view, navbar clicks to mylibrary give popup message */}
-                <Route path="/" element={<LoggedOut fetching={fetching} trends={trends} 
-                handleLogin={handleLogin}/>}/>
+                {/* <Route path="/" element={(sessionToken!=="") ? <Home/> : <LoggedOut setSessionToken={setSessionToken} 
+                sessionToken={sessionToken}/>}/> */}
+                <Route path="/" element={<LoggedOut trends={trends} fetching={fetching} setSessionToken={setSessionToken} sessionToken={sessionToken}/>}/>
+                <Route path="/home" element={<Home sessionToken={sessionToken}/>}/>
                 <Route path="/search" element={<BookGrid/>}/>
                 <Route path="/book/:id" element={<BookDetail/>}/>
-                <Route path="/library" element={<Library/>}/>
+                <Route path="/library" element={<Library sessionToken={sessionToken} />}/>
                 <Route path="/playlist" element={<Playlist/>}/>
             </Routes>
             </BrowserRouter>

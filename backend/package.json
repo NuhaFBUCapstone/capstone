@@ -5,13 +5,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "PORT=3001 nodemon server.js --port 3001"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.0.0-beta.1",
     "lowdb": "^1.0.0",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.19",
     "parse": "^3.4.3",
     "uuidv4": "^6.2.13"
   }

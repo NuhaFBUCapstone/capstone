@@ -4,6 +4,14 @@
     overflow: hidden;
     background-color:rgb(23, 11, 43);
   }
+
+#nav-pic {
+  height: 40px;
+  float:left;
+  padding-top: 16px;
+  padding-left: 9px;
+
+}
   #nav-button {
       display: block;
       color: rgb(255, 240, 221);
