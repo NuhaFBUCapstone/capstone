@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 export default function Playlist() {
+
+    //allow for client to search for genre so it can be more specific: like high fantasy, dark romance, etc
     const CLIENT_ID = "fa34a9f8d466460dbc82e1eddeb37765"
     const REDIRECT_URI = "http://localhost:3000/playlist"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
@@ -31,9 +33,10 @@ export default function Playlist() {
         window.localStorage.removeItem("token")
       }
 
-      async function getSeedSongs() {
-        // const response = await axios.get(``)
-
+      async function getRecs(search) {
+        // const response = await axios.get(`http//localhost:3001/playlist/search?${search}`, body)
+        //will return all the songs
+        //print out pics, titles
       }
 
 

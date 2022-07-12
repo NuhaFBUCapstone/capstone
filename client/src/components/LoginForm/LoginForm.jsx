@@ -4,6 +4,8 @@ import { createRef } from "react"
 import axios from "axios"
 import Home from "../Home/Home"
 import {useNavigate } from "react-router-dom"
+import { useState } from "react"
+
 
 export default function LoginForm(props) {
     const navigate = useNavigate();
@@ -34,12 +36,14 @@ export default function LoginForm(props) {
         <div className="title">Login</div>
         <label>
           <span>Username</span>
-          <input ref={username}></input>
+          <input className="input" ref={username}></input>
         </label>
+        <br></br>
         <label>
-          <span>Password</span>
-          <input type="password" ref={password}></input>
+          <span>Password </span>
+          <input className="input" type={"password"} ref={password}></input>
         </label>
+        <br></br>
         <button type="submit">Login</button>
       </form>
     )

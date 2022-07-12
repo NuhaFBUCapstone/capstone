@@ -11,7 +11,6 @@ export default function NavBar({setSessionToken, sessionToken}) {
       "sessionToken" : sessionToken
       })
     setSessionToken("")
-    console.log(sessionToken)
   }
     return (
     <nav className="navbar">

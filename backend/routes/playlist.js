@@ -1,6 +1,5 @@
 const express = require("express")
 const router = express.Router()
-var request = require('request'); // "Request" library
 var cors = require('cors');
 const Playlist = require("../models/playlist")
 

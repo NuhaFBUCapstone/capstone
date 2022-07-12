@@ -7,6 +7,7 @@ h3 {
     background-color: rgb(225, 207, 190);    
     font-size: 30px;
     padding: 60px;
+    text-align: center;
 }
 
 .about-us {
@@ -27,9 +28,9 @@ h2 {
 
 .header {
     margin-top: 30px;
-    padding-top: 90px;
+    padding-top: 7vh;
     background-color: rgb(225, 207, 190);    
-    height: 10vh;
+    height: 14vh;
     font-size: 40px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
@@ -56,6 +57,26 @@ h2 {
     font-weight: 400;
     height: 80px;
     text-align: center;
+}
+
+.box1 {
+    background-color: rgb(225, 207, 190);    
+    text-align: center;
+    margin-top: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 35px;
+    padding: 35px;
+}
+
+
+.box {
+    background-color: white;
+    width: 500px;
+    margin: auto;
+    box-shadow: 10px 10px 51px -14px rgba(0,0,0,0.7);
+-webkit-box-shadow: 10px 10px 51px -14px rgba(0,0,0,0.7);
+-moz-box-shadow: 10px 10px 51px -14px rgba(0,0,0,0.7);
+padding: 20px;
 }
 
 .carousel {

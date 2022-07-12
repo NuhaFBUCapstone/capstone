@@ -16,6 +16,17 @@ export default function App() {
     const [trends, setTrends] = useState([])
     const [fetching, setFetching] = useState(false)
 
+    async function stupidToken() {
+        console.log(sessionToken)
+        try {
+            const response = await axios.post(`http://localhost:3001/books/add/27`, 
+            {"sessionToken": sessionToken, "list": "currently reading"})
+            console.log(response.data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     async function getTrending() {
         setFetching(true)
         try {
@@ -33,11 +44,13 @@ export default function App() {
     return (
         <div className="app">
             <BrowserRouter>
-            <NavBar setSessionToken={setSessionToken} sessionToken={sessionToken}/>
+            <NavBar sessionToken={sessionToken} setSessionToken={setSessionToken}/>
+            <button onClick={stupidToken}>idhwdh</button>
             <Routes>
                 {/* <Route path="/" element={(sessionToken!=="") ? <Home/> : <LoggedOut setSessionToken={setSessionToken} 
                 sessionToken={sessionToken}/>}/> */}
-                <Route path="/" element={<LoggedOut trends={trends} fetching={fetching} setSessionToken={setSessionToken} sessionToken={sessionToken}/>}/>
+                <Route path="/" element={<LoggedOut trends={trends} fetching={fetching} 
+                sessionToken={sessionToken} setSessionToken={setSessionToken}/>}/>
                 <Route path="/home" element={<Home sessionToken={sessionToken}/>}/>
                 <Route path="/search" element={<BookGrid/>}/>
                 <Route path="/book/:id" element={<BookDetail/>}/>

@@ -2,6 +2,7 @@ import * as React from "react"
 import "./RegisterForm.css"
 import axios from "axios"
 import {useNavigate } from "react-router-dom"
+import {Link} from "react-router-dom"
 
 
 
@@ -36,13 +37,15 @@ export default function RegisterForm(props) {
         <div className="title">Register</div>
         <label>
             <span>Username</span>
-            <input ref={username}></input>
-        </label>
+            <input className="input" ref={username}></input>
+        </label><br>
+        </br>
         <label>
-            <span>Password</span>
-            <input type="password" ref={password}></input>
+            <span>Password </span>
+            <input className="input" type="password" ref={password}></input>
         </label>
-        <button type="submit">Register</button>
+        <br></br>
+        <button type="submit">Register</button> 
     </form>    
     
     )

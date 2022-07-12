@@ -4,19 +4,22 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import LoginForm from "../LoginForm/LoginForm"
 import RegisterForm from "../RegisterForm/RegisterForm"
+import ReactLoading from "react-loading"
 
 export default function LoggedOut(props) {
    
-
-
+    
     //logged in home has friend activity, recomendations (stretch), and recent activity?
     return (
         <div className="logged-out">
             <div className="header">
                 "Meet your next favorite book."
             </div>
-            {props.sessionToken==="" ? <LoginForm setSessionToken={props.setSessionToken}/> : <div className="alr-logged-in"/>}
-            {props.sessionToken==="" ? <RegisterForm setSessionToken={props.setSessionToken}/> : ""}
+            <div className="box1">
+                {props.sessionToken==="" ? <div className="box"> <LoginForm setSessionToken={props.setSessionToken}/></div> : ""}
+            <br></br>
+                {props.sessionToken==="" ?  <div className="box"><RegisterForm setSessionToken={props.setSessionToken}/></div> : ""}
+            </div>
             <h1>Today's Trending Books:</h1>
             {props.fetching ? <h3>Loading...</h3> :
             <div className="trend-box">

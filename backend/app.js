@@ -3,17 +3,19 @@ const cors = require('cors')
 const morgan = require('morgan')
 const Parse = require('parse/node');
 const playlistRoute = require("./routes/playlist")
+const bookRoute = require("./routes/books")
+
 const app = express()
 
 app.use(cors())
 app.use(morgan('tiny'))
 app.use(express.json())
 app.use("/playlist", playlistRoute)
+app.use("/books", bookRoute)
 
 const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
 Parse.initialize("3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY", "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA", MASTERKEY);
 Parse.serverURL = 'http://parseapi.back4app.com/'
-
 
 // test:
 // app.get("/", async (req, res) => {
@@ -60,7 +62,7 @@ app.post('/logout', async (req, res) => {
 app.post('/login', async (req, res) => {
   try {
     const user = await Parse.User.logIn(req.body.username, req.body.password)
-    res.send({"sessionToken": await user.getSessionToken()})
+    res.send({"user": user, "sessionToken": await user.getSessionToken()})
   } catch (error) {
     res.status(400)
     res.send({"error" : "Login failed. " + error })
@@ -74,7 +76,7 @@ app.post('/register', async(req, res) => {
       await user.signUp();
       res.status(201);
       // res.send({ regMessage: "User registered!", typeStatus: "success",  infoUser: infoUser });
-      res.send({"sessionToken": await user.getSessionToken()})
+      res.send({"user": user, "sessionToken": await user.getSessionToken()})
     } catch (err) {
       res.status(400)
       res.send({ regMessage: err.message, typeStatus: "danger",  infoUser: infoUser});
