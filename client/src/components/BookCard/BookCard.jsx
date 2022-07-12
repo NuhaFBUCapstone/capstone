@@ -12,9 +12,10 @@ export default function BookCard(props) {
         </h2>
         <p className="subtitle"> {props.book?.subtitle} </p>
         <div className="media">
-            {props.imageArr ?  <img src={props.imageArr}></img> : 
+            <Link to={`/book/${props.bookId}`}>
+                {props.imageArr ?  <img src={props.imageArr}></img> : 
             <div className="no-image"><p className="no-img">No Image Available</p></div>}
-            {/* <Link to={"/book" + props.book.id}><img src={props.imageArr.thumbnail}></img></Link> */}
+            </Link>
         </div>
         <div className="info">
             <div className="author">Authors: {props.book?.authors}</div>

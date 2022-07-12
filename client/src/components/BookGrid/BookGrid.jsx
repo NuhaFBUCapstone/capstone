@@ -31,7 +31,7 @@ export default function BookGrid() {
             <div className="grid">
                 {results.map((b, idx) => {
                     console.log(b);
-                    return <BookCard key={idx} results={results} book={b.volumeInfo} imageArr={b.volumeInfo.imageLinks?.thumbnail}/>
+                    return <BookCard key={idx} book={b.volumeInfo} bookId={b.id} imageArr={b.volumeInfo.imageLinks?.thumbnail}/>
                 })}
             </div>
         </div>
