@@ -1,6 +1,20 @@
 .input {
     margin: 10px;
     border-radius: 8px;
+    background-color: rgb(255, 240, 221);
+}
+
+.title {
+    font-weight: 550;
+}
+
+.link {
+    background-color: white;
+    border: none;
+    padding: 0px;
+    text-decoration-line: underline;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
 }
 
 /* .box {

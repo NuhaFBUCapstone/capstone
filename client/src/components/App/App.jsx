@@ -16,17 +16,6 @@ export default function App() {
     const [trends, setTrends] = useState([])
     const [fetching, setFetching] = useState(false)
 
-    async function stupidToken() {
-        console.log(sessionToken)
-        try {
-            const response = await axios.post(`http://localhost:3001/books/add/27`, 
-            {"sessionToken": sessionToken, "list": "currently reading"})
-            console.log(response.data)
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
     async function getTrending() {
         setFetching(true)
         try {
@@ -45,7 +34,6 @@ export default function App() {
         <div className="app">
             <BrowserRouter>
             <NavBar sessionToken={sessionToken} setSessionToken={setSessionToken}/>
-            <button onClick={stupidToken}>idhwdh</button>
             <Routes>
                 {/* <Route path="/" element={(sessionToken!=="") ? <Home/> : <LoggedOut setSessionToken={setSessionToken} 
                 sessionToken={sessionToken}/>}/> */}

@@ -3,7 +3,7 @@ import "./RegisterForm.css"
 import axios from "axios"
 import {useNavigate } from "react-router-dom"
 import {Link} from "react-router-dom"
-
+//DELETE component
 
 
 export default function RegisterForm(props) {

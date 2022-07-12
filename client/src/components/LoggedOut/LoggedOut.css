@@ -71,7 +71,8 @@ h2 {
 
 .box {
     background-color: white;
-    width: 500px;
+    width: 30%;
+    min-width: 139px;
     margin: auto;
     box-shadow: 10px 10px 51px -14px rgba(0,0,0,0.7);
 -webkit-box-shadow: 10px 10px 51px -14px rgba(0,0,0,0.7);

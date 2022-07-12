@@ -5,7 +5,7 @@ import axios from "axios"
 
 export default function NavBar({setSessionToken, sessionToken}) {
 
-  const logout = async (event) => {
+  async function logout(event) {
     event.preventDefault()
     const res = await axios.post(`http://localhost:3001/logout`, {
       "sessionToken" : sessionToken
@@ -19,7 +19,7 @@ export default function NavBar({setSessionToken, sessionToken}) {
       <Link to="/search"><p id="nav-button">Search</p></Link>
       <Link to="/library"><p id="nav-button">My Library</p></Link>
       <Link to="/playlist"><p id="nav-button">Playlist Gen</p></Link>
-      <p onClick={logout} id="nav-button">Logout</p>
+      <p onClick={(e) => {logout(e)}} id="nav-button">Logout</p>
     </nav>
     )
 }

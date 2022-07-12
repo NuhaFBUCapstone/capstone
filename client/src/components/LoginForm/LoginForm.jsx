@@ -8,13 +8,13 @@ import { useState } from "react"
 
 
 export default function LoginForm(props) {
+    const [log, setLog] = useState(true)
     const navigate = useNavigate();
     const username = createRef();
     const password = createRef();
+    const passwordConf = createRef();
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        if (!(username.current.value && password.current.value)) return;
+    
         const login = async () => {
             try {
                 console.log("Logging in")
@@ -29,22 +29,54 @@ export default function LoginForm(props) {
                 console.log(err)
             }
         }
-        login()
-    }
+
+        const register = async () => {
+            if (password!==passwordConf) {
+                alert("Passwords do not match");
+                return;
+            }
+            try {
+                const res = await axios.post(`http://localhost:3001/register`, {
+                    "username" : username.current.value,
+                    "password" : password.current.value
+                    })
+                console.log(`register: ${res.data}`)
+                props.setSessionToken(res.data.sessionToken)
+                navigate("/home")
+            } catch (err) {
+                alert(err)
+                console.log(err)
+            }
+        }
+
+
     return (
-        <form onSubmit={handleSubmit}>
-        <div className="title">Login</div>
+        <form onSubmit={(e) => {
+            e.preventDefault();
+            if (!(username.current.value && password.current.value)) return;
+            {log ? login() : register()}
+        }}>
+        <div className="title">{ log ? "Login" : "Register"}</div>
         <label>
-          <span>Username</span>
+          <span>Username:</span>
           <input className="input" ref={username}></input>
         </label>
         <br></br>
         <label>
-          <span>Password </span>
+          <span>Password: </span>
           <input className="input" type={"password"} ref={password}></input>
         </label>
+        {log ? "" :  
+        <><br></br><label>
+          <span>Confirm Password:</span>
+          <input className="input" type={"password"} ref={passwordConf}></input>
+        </label></>
+        }
         <br></br>
-        <button type="submit">Login</button>
+        <button type="submit">{log ? "Login" : "Register"}</button>
+        <div>{log ? "Don't have an account?" : "Already have an account?"} <button onClick={() => {
+            setLog(!log)
+        }} className="link">Click here</button></div>
       </form>
     )
 }

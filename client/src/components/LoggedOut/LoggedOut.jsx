@@ -3,10 +3,10 @@ import "./LoggedOut.css"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import LoginForm from "../LoginForm/LoginForm"
-import RegisterForm from "../RegisterForm/RegisterForm"
 import ReactLoading from "react-loading"
 
 export default function LoggedOut(props) {
+    // const [log, setLog] = useState(true)
    
     
     //logged in home has friend activity, recomendations (stretch), and recent activity?
@@ -16,9 +16,9 @@ export default function LoggedOut(props) {
                 "Meet your next favorite book."
             </div>
             <div className="box1">
-                {props.sessionToken==="" ? <div className="box"> <LoginForm setSessionToken={props.setSessionToken}/></div> : ""}
-            <br></br>
-                {props.sessionToken==="" ?  <div className="box"><RegisterForm setSessionToken={props.setSessionToken}/></div> : ""}
+                {props.sessionToken===""? <div className="box"> <LoginForm setSessionToken={props.setSessionToken}/></div> : ""}
+            {/* <br></br> */}
+                {/* {props.sessionToken==="" ?  <div className="box"><RegisterForm setSessionToken={props.setSessionToken}/></div> : ""} */}
             </div>
             <h1>Today's Trending Books:</h1>
             {props.fetching ? <h3>Loading...</h3> :
