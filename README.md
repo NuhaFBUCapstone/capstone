@@ -2,16 +2,30 @@
 
 **Product Spec**
 
- - A social book cataloguing app that allows you to create lists and save books to those lists.
+MVP:
+ - search functionality with book detail page for each book
+ - users can send recommendations to all their friends 
  - Contains a page that incorporates the Spotify API to create a playlist based off a given book.
  - Allows you to send and accept/reject friend requests and view friends' public lists
+ 
+	 Stretch:
+	 - see recommendations based on book (ex: 50% of users who read this book also read: book1, book2, etc)
+
+Technically Complex Components:
+ - Friend Recommendations
+ 	- users can recommend books to their friends with a message, it shows up in their friends' home page 
+ - Public/Private Lists
 
 **Components and Features**
 
  - Search
 		 - search by title or author
 		 - clicking on books takes you to a book detail page
-  - Home
+
+ - Home
+		 - see recommendations from friends
+		 - recent activity
+ - Landing Page
 		 - see showcase of trending books
 		 - Login/Signup option if not already logged in
 		 - About Us section
