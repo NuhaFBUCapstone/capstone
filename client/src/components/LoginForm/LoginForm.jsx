@@ -14,6 +14,14 @@ export default function LoginForm(props) {
     const password = createRef();
     const passwordConf = createRef();
 
+    // async function getLists(tok) {
+    //     try {
+    //         const response = await axios.get(`http://localhost:3001/library/${tok}`)
+    //         props.setLists(response.data)
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
     
         const login = async () => {
             try {
@@ -31,7 +39,7 @@ export default function LoginForm(props) {
         }
 
         const register = async () => {
-            if (password!==passwordConf) {
+            if (password.current.value!==passwordConf.current.value) {
                 alert("Passwords do not match");
                 return;
             }
@@ -40,11 +48,10 @@ export default function LoginForm(props) {
                     "username" : username.current.value,
                     "password" : password.current.value
                     })
-                console.log(`register: ${res.data}`)
                 props.setSessionToken(res.data.sessionToken)
                 navigate("/home")
             } catch (err) {
-                alert(err)
+                alert(err.response.data)
                 console.log(err)
             }
         }

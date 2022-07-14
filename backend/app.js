@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const Parse = require('parse/node');
 const playlistRoute = require("./routes/playlist")
 const bookRoute = require("./routes/books")
+const libraryRoute = require("./routes/library")
 
 const app = express()
 
@@ -12,6 +13,7 @@ app.use(morgan('tiny'))
 app.use(express.json())
 app.use("/playlist", playlistRoute)
 app.use("/books", bookRoute)
+app.use("/library", libraryRoute)
 
 const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
 Parse.initialize("3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY", "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA", MASTERKEY);
@@ -72,15 +74,10 @@ app.post('/login', async (req, res) => {
 
 app.post('/register', async(req, res) => {
     let user = new Parse.User(req.body);
-    try {
-      await user.signUp();
-      res.status(201);
-      // res.send({ regMessage: "User registered!", typeStatus: "success",  infoUser: infoUser });
-      res.send({"user": user, "sessionToken": await user.getSessionToken()})
-    } catch (err) {
-      res.status(400)
-      res.send({ regMessage: err.message, typeStatus: "danger",  infoUser: infoUser});
-    }
+      user.signUp().catch((e) => {res.status(400).send(e.message)})
+      user.set("lists", ["Read", "Reading", "Want to Read"])
+      await user.save(null, { useMasterKey: true })
+      res.status(201).send({"user": user, "sessionToken": await user.getSessionToken()})
 })
 
 module.exports = app

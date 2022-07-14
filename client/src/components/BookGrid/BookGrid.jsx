@@ -11,7 +11,7 @@ export default function BookGrid() {
 
     async function getSearch(search) {
         if (!search) return;
-        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=25`)
+        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=25&langRestrict=en`)
         setResults(response.data.items)
     }
 
@@ -26,12 +26,11 @@ export default function BookGrid() {
                     setSearch(e.target.value)
                 }} className="bar" placeholder="Type Here" />             
             </form>
-            <button type="submit" onClick={() => getSearch(search)}>search</button>
+            <button type="submit" onClick={(e) => {e.preventDefault(); getSearch(search)}}>search</button>
             </div>
             <div className="grid">
                 {results.map((b, idx) => {
-                    console.log(b);
-                    return <BookCard key={idx} book={b.volumeInfo} bookId={b.id} imageArr={b.volumeInfo.imageLinks?.thumbnail}/>
+                    return <BookCard key={b.id} book={b.volumeInfo} bookId={b.id} imageArr={b.volumeInfo.imageLinks?.thumbnail}/>
                 })}
             </div>
         </div>

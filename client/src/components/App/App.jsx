@@ -15,6 +15,8 @@ export default function App() {
 
     const [trends, setTrends] = useState([])
     const [fetching, setFetching] = useState(false)
+    const [lists, setLists] = useState([])
+
 
     async function getTrending() {
         setFetching(true)
@@ -37,12 +39,12 @@ export default function App() {
             <Routes>
                 {/* <Route path="/" element={(sessionToken!=="") ? <Home/> : <LoggedOut setSessionToken={setSessionToken} 
                 sessionToken={sessionToken}/>}/> */}
-                <Route path="/" element={<LoggedOut trends={trends} fetching={fetching} 
+                <Route path="/" element={<LoggedOut lists={lists} setLists={setLists} trends={trends} fetching={fetching} 
                 sessionToken={sessionToken} setSessionToken={setSessionToken}/>}/>
                 <Route path="/home" element={<Home sessionToken={sessionToken}/>}/>
                 <Route path="/search" element={<BookGrid/>}/>
-                <Route path="/book/:id" element={<BookDetail/>}/>
-                <Route path="/library" element={<Library sessionToken={sessionToken} />}/>
+                <Route path="/book/:id" element={<BookDetail sessionToken={sessionToken} lists={lists}/>}/>
+                <Route path="/library" element={<Library lists={lists} setLists={setLists} sessionToken={sessionToken} />}/>
                 <Route path="/playlist" element={<Playlist/>}/>
             </Routes>
             </BrowserRouter>

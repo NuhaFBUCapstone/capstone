@@ -27,8 +27,11 @@ router.post('/add/:id', async (req, res) => {
         book.set("bookId", req.params.id)
         book.set("userId", objId)
         book.set("list", req.body.list)
+        book.set("title", req.body.title)
+        book.set("image", req.body.image)
+        book.set("author", req.body.author)
         await book.save()
-        res.send(book)
+        res.status(200).send(book)
     } catch (err) {
         res.status(400).send({"error" : "add failed. " + err })
     }

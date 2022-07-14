@@ -6,17 +6,16 @@ import LoginForm from "../LoginForm/LoginForm"
 import ReactLoading from "react-loading"
 
 export default function LoggedOut(props) {
-    // const [log, setLog] = useState(true)
-   
-    
-    //logged in home has friend activity, recomendations (stretch), and recent activity?
     return (
         <div className="logged-out">
             <div className="header">
                 "Meet your next favorite book."
             </div>
             <div className="box1">
-                {props.sessionToken===""? <div className="box"> <LoginForm setSessionToken={props.setSessionToken}/></div> : ""}
+                {props.sessionToken==="" ? 
+                <div className="box">
+                    <LoginForm lists={props.lists} setLists={props.setLists} setSessionToken={props.setSessionToken} sessionToken={props.sessionToken}/>
+                </div> : ""}
             {/* <br></br> */}
                 {/* {props.sessionToken==="" ?  <div className="box"><RegisterForm setSessionToken={props.setSessionToken}/></div> : ""} */}
             </div>
