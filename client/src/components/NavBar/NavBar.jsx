@@ -6,6 +6,7 @@ import axios from "axios"
 export default function NavBar({setSessionToken, sessionToken}) {
 
   async function logout(event) {
+    //FIX: requires a double click for some reason?
     event.preventDefault()
     const res = await axios.post(`http://localhost:3001/logout`, {
       "sessionToken" : sessionToken

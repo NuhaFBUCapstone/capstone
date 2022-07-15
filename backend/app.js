@@ -19,13 +19,6 @@ const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
 Parse.initialize("3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY", "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA", MASTERKEY);
 Parse.serverURL = 'http://parseapi.back4app.com/'
 
-// test:
-// app.get("/", async (req, res) => {
-//   res.status(200).send({ping: "pong"})
-// })
-
-
-//add post for messages? json arrays of books
 
 app.post('/logout', async (req, res) => {
   try {
@@ -35,7 +28,6 @@ app.post('/logout', async (req, res) => {
 
   query.first( { useMasterKey : true}).then(function (user) {
     if (user) {
-      console.log(user)
       user
       .destroy(
         {useMasterKey: true}

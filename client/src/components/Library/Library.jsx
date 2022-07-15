@@ -9,10 +9,12 @@ export default function Library({sessionToken}) {
     const [list, setList] = useState("")
     const [adding, setAdding] = useState("")
 
+    /**
+     * get users lists and saved books and store it as a state variable
+     */
     async function getLists() {
         try {
             const response = await axios.get(`http://localhost:3001/library/${sessionToken}`)
-            console.log("Library getlists()")
             console.log(response.data)
             setBooks(response.data)
         } catch (err) {
@@ -24,16 +26,9 @@ export default function Library({sessionToken}) {
       },[])
 
 
-    // async function getBooks() {
-    //     try {
-    //         const response = await axios.get(`http://localhost:3001/library/books/${list}`, {
-    //             "sessionToken": sessionToken
-    //         })
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-
+    /**
+     * adds list to library after "add list" is double clicked 
+     */
     async function addList(e) {
         e.preventDefault();
         if (adding==="show") {
@@ -55,6 +50,9 @@ export default function Library({sessionToken}) {
         setAdding("")
     }
 
+    /**
+     * deletes list from library after button is clicked
+     */
     async function deleteList(e) {
         e.preventDefault();
         try {
@@ -65,17 +63,27 @@ export default function Library({sessionToken}) {
             delete copy[list]
             setBooks(books => ({
                 ...copy
-            }))        
+            }))
+            setList("")        
         } catch (err) {
             console.log(err)
         }
     }
 
+    async function deleteBook(e, bookId) {
+        e.preventDefault();
+        console.log(`in delete for ${bookId}`)
+        try {
+            await axios.post(`http://localhost:3001/books/remove/${bookId}`, {
+                "sessionToken": sessionToken, "list": list
+            })
+            getLists() //very slow!
+        } catch (err) {
+            console.log(err)
+        }
+        return;
+    }
 
-    // books={
-    //     "Read": [], 
-    //      "Hi": [bookId, bookId, etc to get from google API]
-    // }
     return (
         <div className="library">
             <div className={sessionToken==="" ? "logged-out" : "hidden"}>
@@ -94,13 +102,19 @@ export default function Library({sessionToken}) {
                         <input className="hidden" type="submit" value="Submit" />
                     </form> : <p onDoubleClick={() => setAdding("show")} id="list-add">add list...</p>}
                 </div>
-                <div>
+                <div className="grid-side">
                 <div className="grid-title">{list} <br/> 
-                    <button className={list!=="" ? "delete" : "hidden"} onClick={deleteList}>delete list</button>
+                    <button className={(list==="" || list==="Read" || list==="Reading" || list==="Want to Read") ? 
+                    "hidden" : "delete"} 
+                    onClick={deleteList}>delete list
+                    </button>
                 </div>
                 <div className="library-grid">
                     {books[list]?.map(b => {
-                        return <Link to={`/book/${b.bookId}`} key={b.bookId}><div>{`${b.title} by ${b.author}`} <img className="lib-img" src={b.image}/></div></Link>
+                        return <div className="card" key={b.bookId}>
+                            <Link id="test" to={`/book/${b.bookId}`} ><img className="lib-img" src={b.image}/></Link>
+                            <p onClick={(e) => deleteBook(e, b.bookId)} className="delete-btn">delete book</p>
+                            </div>
                     })}
                 </div></div>
             </div>

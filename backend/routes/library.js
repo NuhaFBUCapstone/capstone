@@ -7,7 +7,6 @@ router.use(cors())
 
 const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
 Parse.initialize("3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY", "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA", MASTERKEY);
-// Parse.serverURL = 'http://parseapi.back4app.com/'
 
 async function getUserHelper(sessionToken) {
     // return user from session token
@@ -19,6 +18,9 @@ async function getUserHelper(sessionToken) {
     return await userQuery.first({useMasterKey : true})
 }
 
+/**
+ * add list to user's library
+ */
 router.post('/add/:list', async (req, res) => {
     try {
         let user = await getUserHelper(req.body.sessionToken)
@@ -31,6 +33,9 @@ router.post('/add/:list', async (req, res) => {
     }
 })
 
+/**
+ * delete list from user's library
+ */
 router.post('/delete/:list', async (req, res) => {
     try {
         let user = await getUserHelper(req.body.sessionToken)
@@ -44,7 +49,9 @@ router.post('/delete/:list', async (req, res) => {
 })
 
 
-
+/**
+ * get all of user's lists and saved books
+ */
 router.get('/:sessionToken', async (req, res) => {
     try {
         let user = await getUserHelper(req.params.sessionToken)
@@ -58,36 +65,10 @@ router.get('/:sessionToken', async (req, res) => {
             console.log(books)
             temp[l] = books
         }
-        // user.attributes.lists.map(async l => {
-        //     let bookQuery = new Parse.Query("Books")
-        //     bookQuery.equalTo("userId", user.id)
-        //     bookQuery.equalTo("list", l)
-        //     const books = await bookQuery.find({useMasterKey : true})
-        //     console.log(books)
-        //     temp[l] = books
-        // })
         res.send(temp)
-        //res.send({list1:[], list2:[]...})
     } catch (err) {
         res.status(400).send({"error": `lists could not be retrieved. ${err}`})
     }
 })
-
-router.get('books/:list', async (req, res) => {
-    try {
-        let query = new Parse.Query("_Session")
-        query.equalTo("sessionToken", sessionToken)
-        const session = await query.first({useMasterKey : true})
-        let bookQuery = new Parse.Query("Books")
-        bookQuery.equalTo("userId", session.attributes.user.id)
-        bookQuery.equalTo("list", req.params.list)
-        const books = await bookQuery.find({useMasterKey : true})
-        res.status(200).send(books)
-    } catch (err) {
-        res.status(400).send({"error": `books could not be retrieved. ${err}`})
-
-    }
-})
-
 
 module.exports = router

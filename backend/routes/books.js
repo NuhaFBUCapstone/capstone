@@ -7,7 +7,6 @@ router.use(cors())
 
 const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
 Parse.initialize("3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY", "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA", MASTERKEY);
-// Parse.serverURL = 'http://parseapi.back4app.com/'
 
 /**
  * add a book to a list
@@ -39,7 +38,7 @@ router.post('/add/:id', async (req, res) => {
 })
 
 /**
- * remove a book from all lists
+ * remove a book from a list
  */
 router.post('/remove/:id', async (req, res) => {
     try {

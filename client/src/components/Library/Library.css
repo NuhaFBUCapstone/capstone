@@ -3,9 +3,10 @@
 }
 .library-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
     margin-top: 20px;
+    margin-right: 20px;
 }
 .grid-title {
     font-size: 35px;
@@ -13,6 +14,22 @@
     margin: 20px;
     /* background-color: rgb(217, 214, 231); */
 }
+
+.delete-btn {
+    visibility: hidden;
+    margin-top: 8px;
+    color: rgb(136, 86, 136);
+    font-weight: 500;
+    text-align: center;
+    border: 1px;
+    border-style: solid;
+    /* text-decoration-line: underline; */
+}
+.card:hover .delete-btn {
+    visibility: visible;
+ 
+}
+
 .list-add-type {
     background-color: rgb(217, 214, 231);
     border-width: 2px;
@@ -27,7 +44,8 @@
     margin: 10px;
 }
 .lib-img {
-    height: 250px;
+    width: 100%;
+    border-radius: 6px;
 }
 
 #list {
@@ -39,7 +57,6 @@
 }
 #list-add:hover {
     color: rgb(44, 8, 44);
-    /* color: rgb(151, 147, 147); */
 }
 #list:hover {
     color: rgb(168, 103, 168);
@@ -48,6 +65,12 @@
 #header {
     font-size: 32px;
     font-weight: 700;
+}
+.card {
+    margin: 10px;
+}
+.grid-side {
+    width: 85%
 }
 
 .flex {
@@ -76,19 +99,29 @@
     background-color: rgb(255, 240, 221);
 
 } */
-@media screen and (max-width: 1350px){
-    .grid{
-        grid-template-columns: 1fr 1fr 1fr;
+@media screen and (max-width: 1410px){
+    .library-grid{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 }
 
-@media screen and (max-width: 1070px){
-    .grid{
+@media screen and (max-width: 1210px){
+    .library-grid{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+@media screen and (max-width: 1000px){
+    .library-grid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (max-width: 750px){
+    .library-grid{
         grid-template-columns: 1fr 1fr;
     }
 }
-@media screen and (max-width: 700px){
-    .grid{
+@media screen and (max-width: 540px){
+    .library-grid{
         grid-template-columns: 1fr;
     }
 }

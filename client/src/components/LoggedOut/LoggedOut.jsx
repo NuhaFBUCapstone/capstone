@@ -29,7 +29,7 @@ export default function LoggedOut(props) {
                     </div>
                 })}
             </div> }
-            <h2>About Us</h2>
+            <h2 className="about-us-header">About Us</h2>
             <div className="about-us">
                     <p className="about-text">
                         [blank] is a website designed to make reading a full experience. 

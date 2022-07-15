@@ -12,12 +12,13 @@ import Home from "../Home/Home"
 
 export default function App() {
     const [sessionToken, setSessionToken] = useState("")
-
     const [trends, setTrends] = useState([])
     const [fetching, setFetching] = useState(false)
     const [lists, setLists] = useState([])
 
-
+    /**
+     * get trending books for landing page
+     */
     async function getTrending() {
         setFetching(true)
         try {
@@ -37,8 +38,6 @@ export default function App() {
             <BrowserRouter>
             <NavBar sessionToken={sessionToken} setSessionToken={setSessionToken}/>
             <Routes>
-                {/* <Route path="/" element={(sessionToken!=="") ? <Home/> : <LoggedOut setSessionToken={setSessionToken} 
-                sessionToken={sessionToken}/>}/> */}
                 <Route path="/" element={<LoggedOut lists={lists} setLists={setLists} trends={trends} fetching={fetching} 
                 sessionToken={sessionToken} setSessionToken={setSessionToken}/>}/>
                 <Route path="/home" element={<Home sessionToken={sessionToken}/>}/>

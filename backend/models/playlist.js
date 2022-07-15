@@ -20,7 +20,6 @@ class Playlist {
               'Authorization': `Bearer ${token}`
             }
           });     
-        //return response.data.playlists.items     
           return this.getSongs(response.data.playlists.items, token)
     }
 
@@ -51,7 +50,6 @@ class Playlist {
         arr.forEach(i => {
             seedSongs.push(songs[i])
         })
-        //  return seedSongs[0]
         return this.getRec(seedSongs, token)
     }
     static async getSongsHelper(url, token) {

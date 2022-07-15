@@ -2,7 +2,6 @@ import * as React from "react"
 import "./LoginForm.css"
 import { createRef } from "react"
 import axios from "axios"
-import Home from "../Home/Home"
 import {useNavigate } from "react-router-dom"
 import { useState } from "react"
 
@@ -14,15 +13,6 @@ export default function LoginForm(props) {
     const password = createRef();
     const passwordConf = createRef();
 
-    // async function getLists(tok) {
-    //     try {
-    //         const response = await axios.get(`http://localhost:3001/library/${tok}`)
-    //         props.setLists(response.data)
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-    
         const login = async () => {
             try {
                 console.log("Logging in")

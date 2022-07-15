@@ -6,16 +6,17 @@ import axios from "axios"
 import "./BookDetail.css"
 
 export default function BookDetail(props) {
+    const params = useParams();
     const [book, setBook] = useState({})
     const [fetching, setFetching] = useState(false)
-    //TODO: get/post requests for user specific data from backend (ratings and reviews and add to list)
     const [opts, setOpts] = useState([])
     const [list, setList] = useState("")
 
-    async function getLists() {
-        //merge with Library?
+    /**
+     * get dropdown options
+     */
+    async function getDropdown() {
         try {
-            // setOpts([])
             const response = await axios.get(`http://localhost:3001/library/${props.sessionToken}`)
             let test = Object.keys(response.data)
             let temp = []
@@ -28,7 +29,9 @@ export default function BookDetail(props) {
         }
     }
 
-    const params = useParams();
+    /**
+     * get book details from google API
+     */
     async function getDetails() {
         try {
             setFetching(true)
@@ -43,9 +46,12 @@ export default function BookDetail(props) {
     }
     useEffect(() => {
         getDetails()
-        {if (props.sessionToken!=="") getLists()}
+        {if (props.sessionToken!=="") getDropdown()}
     }, [])
 
+    /**
+     * add book to list and save details and image to database
+     */
     async function addBook() {
         if (list==="") return
         try {
@@ -58,11 +64,13 @@ export default function BookDetail(props) {
             console.log(err)
         }
     }
+    /**
+     * helper function to get image
+     * @returns the largest image available
+     */
     const getImage = () => {
         if (!book.volumeInfo) return
         const keys = Object.keys(book.volumeInfo?.imageLinks)
-        // console.log(keys)
-        // console.log(keys[keys.length-1])
         return book.volumeInfo?.imageLinks[keys[keys.length-1]]
     }
 
@@ -89,7 +97,8 @@ export default function BookDetail(props) {
                         {opts}
                     </select>
                     <button onClick={addBook}>Add</button>
-                </div>
+                </div><br/>
+                <div className="ratings">Ratings and Reviews will go here</div>
             </div>
     }
         </div>
