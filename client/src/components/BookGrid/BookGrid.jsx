@@ -11,7 +11,7 @@ export default function BookGrid() {
 
     async function getSearch(search) {
         if (!search) return;
-        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=25&langRestrict=en`)
+        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=30&langRestrict=en`)
         setResults(response.data.items)
     }
 

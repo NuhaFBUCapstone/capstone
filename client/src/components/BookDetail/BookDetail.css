@@ -15,7 +15,23 @@
     line-height: 40px;
 }
 
-.book-detail p {
+.details {
+    font-size: 23px;
+    padding: 25px;
+    margin-bottom: 10px;
+    font-family: serif;
+    align-self: center;
+    line-height: 40px;
+    font-weight: 600;
+}
+.buy {
+    font-size: 20px;
+    font-family: Verdana;
+    flex-wrap: wrap;
+    font-weight: 500;
+
+}
+.book-detail .desc {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     line-height: 25px;
     width: 70%;
@@ -27,6 +43,15 @@
 .photo {
     height: 400px;
     border-radius: 10px;
+    border-color: rgb(126, 99, 170);
+    border-width: 1px;
+    border-style: solid;
+
+}
+.test {
+    display:inline-flex;
+    flex-wrap: wrap;
+    flex-direction:row;
 }
 
 .label {

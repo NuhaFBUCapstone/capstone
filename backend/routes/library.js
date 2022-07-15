@@ -31,7 +31,7 @@ router.post('/add/:list', async (req, res) => {
     }
 })
 
-router.post('/remove/:list', async (req, res) => {
+router.post('/delete/:list', async (req, res) => {
     try {
         let user = await getUserHelper(req.body.sessionToken)
         user.remove("lists", req.params.list)

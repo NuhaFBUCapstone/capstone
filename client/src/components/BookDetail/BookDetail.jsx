@@ -50,14 +50,20 @@ export default function BookDetail(props) {
         if (list==="") return
         try {
             const response = await axios.post(`http://localhost:3001/books/add/${book.id}`, {
-                "sessionToken": props.sessionToken, "list": list, "title": book.volumeInfo.title,
-                "image": book.volumeInfo.imageLinks?.large, "author": book.volumeInfo.authors[0]
+                "sessionToken": props.sessionToken, "list": list, "title": book.volumeInfo?.title,
+                "image": getImage(), "author": book.volumeInfo?.authors ? book.volumeInfo?.authors[0] : "[unknown]"
             })
             console.log(response.data)
         } catch (err) {
             console.log(err)
         }
-
+    }
+    const getImage = () => {
+        if (!book.volumeInfo) return
+        const keys = Object.keys(book.volumeInfo?.imageLinks)
+        // console.log(keys)
+        // console.log(keys[keys.length-1])
+        return book.volumeInfo?.imageLinks[keys[keys.length-1]]
     }
 
     return (
@@ -65,10 +71,17 @@ export default function BookDetail(props) {
             {fetching ? <h1>Loading...</h1> : 
             (book===undefined) ? <div className="not-found">That book doesn't exist...</div> : 
             <div className="defined">
-                <img className="photo" src={book.volumeInfo?.imageLinks.large}/>
-                {/* map through image links and figure out which is actually there ? ex: while (undefined) */}
-                <div className="title">"{book.volumeInfo?.title}" by {book.volumeInfo?.authors[0]}<br/></div>
-                <p>Description: {book.volumeInfo?.description}</p>
+                <div className="test">
+                    <img className="photo" src={getImage()}/>
+                    <div className="details">Page Count: {book.volumeInfo?.printedPageCount}<br/>
+                        Published Date: {book.volumeInfo?.publishedDate}<br/>
+                        <a href={book.saleInfo?.buyLink} className={book.saleInfo?.saleability==="NOT_FOR_SALE" ? "hidden":"buy"}>
+                            Click to Buy</a>
+                    </div> 
+                </div>
+                <div className="title">"{book.volumeInfo?.title}" by {book.volumeInfo?.authors ? book.volumeInfo?.authors[0] : "[unknown]" }
+                <br/></div>
+                <div className="desc" dangerouslySetInnerHTML={{__html: book.volumeInfo?.description}}></div>
                 <div className={props.sessionToken==="" ? "hidden" : "dropdown-outer"}>
                     <label className="label">Add to List: </label>
                     <select className="dropdown" onChange={e => {setList(e.target.value)}}>

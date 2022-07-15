@@ -5,17 +5,29 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
-    /* width: 72%; */
-    float: right;
     margin-top: 20px;
 }
 .grid-title {
     font-size: 35px;
     font-family: serif;
+    margin: 20px;
+    /* background-color: rgb(217, 214, 231); */
+}
+.list-add-type {
+    background-color: rgb(217, 214, 231);
+    border-width: 2px;
+    border-color: rgb(136, 86, 136);
+    height: 20px;
+    width: 65%;
+    min-width: 100px;
+    border-radius: 8px;
 }
 
+.delete {
+    margin: 10px;
+}
 .lib-img {
-    size: 200px;
+    height: 250px;
 }
 
 #list {
@@ -24,6 +36,10 @@
 #list-add {
     font-size: 25px;
     color: rgb(151, 147, 147);
+}
+#list-add:hover {
+    color: rgb(44, 8, 44);
+    /* color: rgb(151, 147, 147); */
 }
 #list:hover {
     color: rgb(168, 103, 168);
@@ -46,7 +62,7 @@
     background-color: rgb(217, 214, 231);
 }
 
-button {
+/* button {
     background-color: rgb(255, 240, 221);
     border-radius: 5px;
     padding: 5px;
@@ -59,7 +75,7 @@ button {
     width: 45%;
     background-color: rgb(255, 240, 221);
 
-}
+} */
 @media screen and (max-width: 1350px){
     .grid{
         grid-template-columns: 1fr 1fr 1fr;

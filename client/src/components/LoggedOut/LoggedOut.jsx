@@ -14,7 +14,7 @@ export default function LoggedOut(props) {
             <div className="box1">
                 {props.sessionToken==="" ? 
                 <div className="box">
-                    <LoginForm lists={props.lists} setLists={props.setLists} setSessionToken={props.setSessionToken} sessionToken={props.sessionToken}/>
+                    <LoginForm setSessionToken={props.setSessionToken} sessionToken={props.sessionToken}/>
                 </div> : ""}
             {/* <br></br> */}
                 {/* {props.sessionToken==="" ?  <div className="box"><RegisterForm setSessionToken={props.setSessionToken}/></div> : ""} */}
