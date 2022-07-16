@@ -15,6 +15,11 @@
     line-height: 40px;
 }
 
+.review-type {
+    border-radius: 5px;
+    padding: 6px;
+    margin: 3px;
+}
 .details {
     font-size: 23px;
     padding: 25px;

@@ -5,6 +5,7 @@ const Parse = require('parse/node');
 const playlistRoute = require("./routes/playlist")
 const bookRoute = require("./routes/books")
 const libraryRoute = require("./routes/library")
+const reviewRoute = require("./routes/reviews")
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(express.json())
 app.use("/playlist", playlistRoute)
 app.use("/books", bookRoute)
 app.use("/library", libraryRoute)
+app.use("/reviews", reviewRoute)
 
 const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
 Parse.initialize("3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY", "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA", MASTERKEY);

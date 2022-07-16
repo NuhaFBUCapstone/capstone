@@ -15,6 +15,7 @@ export default function App() {
     const [trends, setTrends] = useState([])
     const [fetching, setFetching] = useState(false)
     const [lists, setLists] = useState([])
+    console.log(sessionToken)
 
     /**
      * get trending books for landing page

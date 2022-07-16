@@ -9,7 +9,7 @@ export default function BookGrid() {
     const [search, setSearch] = useState ("")
     const [results, setResults] = useState([])
 
-    async function getSearch(search) {
+    async function getSearch() {
         if (!search) return;
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=35&langRestrict=en`)
         setResults(response.data.items)
@@ -22,7 +22,7 @@ export default function BookGrid() {
                 <input type="text" onChange={(e) => {
                     setSearch(e.target.value)
                 }} className="bar" placeholder="Type Here" /> 
-                <input id="search-btn" type="submit" value="search" onClick={(e) => {e.preventDefault(); getSearch(search)}}/>            
+                <input id="search-btn" type="submit" value="search" onClick={(e) => {e.preventDefault(); getSearch()}}/>            
             </form>
             </div>
             <div className="grid">

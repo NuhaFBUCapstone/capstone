@@ -111,7 +111,7 @@ export default function Library({sessionToken}) {
                 </div>
                 <div className="library-grid">
                     {books[list]?.map(b => {
-                        return <div className="card" key={b.bookId}>
+                        return <div className="card" key={b.objectId}>
                             <Link id="test" to={`/book/${b.bookId}`} ><img className="lib-img" src={b.image}/></Link>
                             <p onClick={(e) => deleteBook(e, b.bookId)} className="delete-btn">delete book</p>
                             </div>

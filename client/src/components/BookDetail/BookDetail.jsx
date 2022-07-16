@@ -11,6 +11,8 @@ export default function BookDetail(props) {
     const [fetching, setFetching] = useState(false)
     const [opts, setOpts] = useState([])
     const [list, setList] = useState("")
+    const [reviews, setReviews] = useState([])
+    const [myReview, setMyReview] = useState("")
 
     /**
      * get dropdown options
@@ -38,9 +40,12 @@ export default function BookDetail(props) {
             const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${params.id}`)
             console.log(response.data)
             setBook(response.data)
+            const response2 = await axios.get(`http://localhost:3001/reviews/${response.data.id}`)
+            setReviews(response2.data)
+            // await getReviews()
         } catch (err) {
             console.log(`error getting book details: ${err}`)
-            setBook(undefined)
+            // setBook(undefined)
         }
         setFetching(false)
     }
@@ -64,6 +69,30 @@ export default function BookDetail(props) {
             console.log(err)
         }
     }
+
+    async function getReviews() {
+        // if (!book) return
+        try {
+            console.log(book.id)
+            const response = await axios.get(`http://localhost:3001/reviews/${book.id}`)
+            setReviews(response.data)
+            console.log(response) 
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    async function addReview() {
+        try {
+            const response = await axios.post(`http://localhost:3001/reviews/add/${book.id}`, {
+                "sessionToken": props.sessionToken, "review": myReview, "rating":3
+            })            
+            getReviews()
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     /**
      * helper function to get image
      * @returns the largest image available
@@ -98,7 +127,19 @@ export default function BookDetail(props) {
                     </select>
                     <button onClick={addBook}>Add</button>
                 </div><br/>
-                <div className="ratings">Ratings and Reviews will go here</div>
+                <h2>Ratings and Reviews:</h2>
+                <form className={props.sessionToken==="" ? "hidden" : "review"}>
+                    <label>Your Review: </label>
+                    <input className="review-type" type="text" placeholder="Thoughts?" onChange={(e) => {
+                    setMyReview(e.target.value)
+                }}/>
+                    <input type="submit" value="Send" onClick={(e) => {e.preventDefault(); addReview()}}/>
+                </form>
+                <div className="ratings">{reviews.reverse().map(r => {
+                    return <div key={r.objectId}>
+                        <p>{r.username}: {r.review} <br/> Rating: {r.rating}/5</p>
+                        </div>
+                })}</div>
             </div>
     }
         </div>
