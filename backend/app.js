@@ -18,7 +18,9 @@ app.use("/library", libraryRoute)
 app.use("/reviews", reviewRoute)
 
 const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
-Parse.initialize("3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY", "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA", MASTERKEY);
+const APPKEY = "3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY"
+const JSKEY = "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA"
+Parse.initialize(APPKEY, JSKEY, MASTERKEY);
 Parse.serverURL = 'http://parseapi.back4app.com/'
 
 

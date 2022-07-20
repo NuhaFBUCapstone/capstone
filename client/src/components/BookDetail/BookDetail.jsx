@@ -13,7 +13,9 @@ export default function BookDetail(props) {
     const [list, setList] = useState("")
     const [reviews, setReviews] = useState([])
     const [myReview, setMyReview] = useState("")
+    const [myRating, setMyRating] = useState(0)
 
+    
     /**
      * get dropdown options
      */
@@ -49,10 +51,10 @@ export default function BookDetail(props) {
         }
         setFetching(false)
     }
-    useEffect(() => {
-        getDetails()
-        {if (props.sessionToken!=="") getDropdown()}
-    }, [])
+    // useEffect(() => {
+    //     getDetails()
+    //     {if (props.sessionToken!=="") getDropdown()}
+    // }, [])
 
     /**
      * add book to list and save details and image to database
@@ -70,24 +72,24 @@ export default function BookDetail(props) {
         }
     }
 
-    async function getReviews() {
-        // if (!book) return
-        try {
-            console.log(book.id)
-            const response = await axios.get(`http://localhost:3001/reviews/${book.id}`)
-            setReviews(response.data)
-            console.log(response) 
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    // async function getReviews() {
+    //     // if (!book) return
+    //     try {
+    //         console.log(book.id)
+    //         const response = await axios.get(`http://localhost:3001/reviews/${book.id}`)
+    //         setReviews(response.data)
+    //         console.log(response) 
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
     async function addReview() {
         try {
             const response = await axios.post(`http://localhost:3001/reviews/add/${book.id}`, {
-                "sessionToken": props.sessionToken, "review": myReview, "rating":3
-            })            
-            getReviews()
+                "sessionToken": props.sessionToken, "review": myReview, "rating": myRating
+            })
+            setReviews(prev => [...prev, response.data])     
         } catch (err) {
             console.log(err)
         }
@@ -133,11 +135,12 @@ export default function BookDetail(props) {
                     <input className="review-type" type="text" placeholder="Thoughts?" onChange={(e) => {
                     setMyReview(e.target.value)
                 }}/>
+                    {/* <input className="rating-type" type="radio" value="1"/> */}
                     <input type="submit" value="Send" onClick={(e) => {e.preventDefault(); addReview()}}/>
                 </form>
                 <div className="ratings">{reviews.reverse().map(r => {
                     return <div key={r.objectId}>
-                        <p>{r.username}: {r.review} <br/> Rating: {r.rating}/5</p>
+                        <p>{r.username}: {r.review} <br/> Rating: {r.rating}/5 <br/> Created at: {r.createdAt}</p>
                         </div>
                 })}</div>
             </div>

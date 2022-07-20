@@ -2,6 +2,7 @@ import * as React from "react"
 import "./Playlist.css"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import SpotifyCard from "../SpotifyCard/SpotifyCard"
 
 export default function Playlist() {
 
@@ -12,7 +13,9 @@ export default function Playlist() {
     const RESPONSE_TYPE = "token"
 
     const [token, setToken] = useState("")
+    //check token based on localstorage so it stays after refresh
     const [search, setSearch] = useState("")
+    const [results, setResults] = useState([])
     useEffect(() => {
         const hash = window.location.hash 
         let token = window.localStorage.getItem("token")
@@ -33,8 +36,15 @@ export default function Playlist() {
         window.localStorage.removeItem("token")
       }
 
-      async function getRecs(search) {
-        // const response = await axios.get(`http//localhost:3001/playlist/search?${search}`, body)
+      async function getRecs() {
+        try {
+            const response = await axios.get(`http//localhost:3001/playlist/search?${search}`, {
+                "token": token
+            })
+            setResults(response.data.tracks)
+        } catch (err) {
+            console.log(err)
+        }
         //will return all the songs
         //print out pics, titles
       }
@@ -43,15 +53,19 @@ export default function Playlist() {
 
       return (
         <div className="playlist">
-            {!token ? 
-            <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
+            <a className={token? "hidden" : "sp-log-in"} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
                 Login to Spotify</a> 
-            : <button onClick={logOut}>Logout</button>}
+            <button className={token? "sp-log-out" : "hidden"} onClick={logOut}>Logout</button>
             <div className={token? "token": "token hidden"}>
                 <form>
                     <input type="text" onChange={e => setSearch(e.target.value)}/>
-                    <button type={"submit"}>Submit</button>
+                    <button onClick={getRecs} type={"submit"}>Submit</button>
                 </form>
+            </div>
+            <div className="search-results">
+                {results.map((r, idx) => {
+                    return <SpotifyCard song={r} key={idx}/>
+                })}
             </div>
             
         </div>
