@@ -12,11 +12,10 @@ import Home from "../Home/Home"
 import NotFound from "../NotFound/NotFound"
 
 export default function App() {
-    const [sessionToken, setSessionToken] = useState("")
+    const [sessionToken, setSessionToken] = useState(localStorage.getItem('sessionToken'))
     const [trends, setTrends] = useState([])
     const [fetching, setFetching] = useState(false)
     const [lists, setLists] = useState([])
-    console.log(sessionToken)
 
     /**
      * get trending books for landing page

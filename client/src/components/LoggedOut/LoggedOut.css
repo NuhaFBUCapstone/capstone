@@ -3,6 +3,7 @@
     padding: 20px;
 }
 
+
 h3 {
     background-color: rgb(225, 207, 190);    
     font-size: 30px;
@@ -27,13 +28,21 @@ h3 {
 }
 
 .header {
-    margin-top: 30px;
-    padding-top: 7vh;
+    /* margin-top: 30px;
+    padding-top: 7vh; */
     background-color: rgb(225, 207, 190);    
-    height: 14vh;
+    /* height: 14vh;
     font-size: 40px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; */
+    /* text-align: center; */
+    padding: 20px;
+    display: flex;
+}
+.header img {
+    height: 100%;
+    box-shadow: 10px 10px 51px -14px rgba(0,0,0,0.7);
+-webkit-box-shadow: 10px 10px 51px -14px rgba(0,0,0,0.7);
+-moz-box-shadow: 10px 10px 51px -14px rgba(0,0,0,0.7);
 }
 
 .trend-box {

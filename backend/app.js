@@ -37,16 +37,13 @@ app.post('/logout', async (req, res) => {
         {useMasterKey: true}
       )
       .then ( function(res) {
-        console.log("success")
         return;
       })
       .catch(function (err) {
-        console.log(err)
         res.status(400)
         res.send({ Message: err.message, typeStatus: "danger"});
       })
     } else {
-      console.log("Nothing here")
       res.send();
     }
   })

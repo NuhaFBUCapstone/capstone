@@ -1,0 +1,24 @@
+.logged-out-home {
+    background-color: rgb(225, 207, 190); 
+    width: 40%;
+    text-align: center;
+    margin: auto;
+    margin-top: 15vh;
+    padding: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+.logged-out-home p {
+    font-size: 29px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.logged-out-home a {
+    font-size: 23px;
+    padding: 8px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
