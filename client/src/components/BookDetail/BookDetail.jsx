@@ -138,7 +138,7 @@ export default function BookDetail(props) {
                     {/* <input className="rating-type" type="radio" value="1"/> */}
                     <input type="submit" value="Send" onClick={(e) => {e.preventDefault(); addReview()}}/>
                 </form>
-                <div className="ratings">{reviews.reverse().map(r => {
+                <div className="ratings">{reviews.slice().reverse().map(r => {
                     return <div key={r.objectId}>
                         <p>{r.username}: {r.review} <br/> Rating: {r.rating}/5 <br/> Created at: {r.createdAt}</p>
                         </div>
