@@ -11,7 +11,8 @@ export default function NavBar({setSessionToken, sessionToken}) {
     const res = await axios.post(`http://localhost:3001/logout`, {
       "sessionToken" : sessionToken
       })
-    setSessionToken("")
+    setSessionToken(null)
+    localStorage.removeItem("sessionToken")
   }
     return (
     <nav className="navbar">

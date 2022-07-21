@@ -42,19 +42,18 @@ export default function BookDetail(props) {
             const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${params.id}`)
             console.log(response.data)
             setBook(response.data)
-            const response2 = await axios.get(`http://localhost:3001/reviews/${response.data.id}`)
-            setReviews(response2.data)
-            // await getReviews()
+            const reviewResponse = await axios.get(`http://localhost:3001/reviews/${response.data.id}`)
+            setReviews(reviewResponse.data)
         } catch (err) {
             console.log(`error getting book details: ${err}`)
-            // setBook(undefined)
+            setBook(undefined)
         }
         setFetching(false)
     }
-    // useEffect(() => {
-    //     getDetails()
-    //     {if (props.sessionToken!=="") getDropdown()}
-    // }, [])
+    useEffect(() => {
+        getDetails()
+        {if (props.sessionToken!=="") getDropdown()}
+    }, [])
 
     /**
      * add book to list and save details and image to database
@@ -71,18 +70,6 @@ export default function BookDetail(props) {
             console.log(err)
         }
     }
-
-    // async function getReviews() {
-    //     // if (!book) return
-    //     try {
-    //         console.log(book.id)
-    //         const response = await axios.get(`http://localhost:3001/reviews/${book.id}`)
-    //         setReviews(response.data)
-    //         console.log(response) 
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
 
     async function addReview() {
         try {
@@ -121,7 +108,7 @@ export default function BookDetail(props) {
                 <div className="title">"{book.volumeInfo?.title}" by {book.volumeInfo?.authors ? book.volumeInfo?.authors[0] : "[unknown]" }
                 <br/></div>
                 <div className="desc" dangerouslySetInnerHTML={{__html: book.volumeInfo?.description}}></div>
-                <div className={props.sessionToken==="" ? "hidden" : "dropdown-outer"}>
+                <div className={props.sessionToken===null ? "hidden" : "dropdown-outer"}>
                     <label className="label">Add to List: </label>
                     <select className="dropdown" onChange={e => {setList(e.target.value)}}>
                         <option></option>
@@ -130,15 +117,15 @@ export default function BookDetail(props) {
                     <button onClick={addBook}>Add</button>
                 </div><br/>
                 <h2>Ratings and Reviews:</h2>
-                <form className={props.sessionToken==="" ? "hidden" : "review"}>
+                <form className={props.sessionToken===null ? "hidden" : "review"}>
                     <label>Your Review: </label>
                     <input className="review-type" type="text" placeholder="Thoughts?" onChange={(e) => {
                     setMyReview(e.target.value)
                 }}/>
-                    {/* <input className="rating-type" type="radio" value="1"/> */}
+                    <input className="rating-type" type="radio" value="1"/>
                     <input type="submit" value="Send" onClick={(e) => {e.preventDefault(); addReview()}}/>
                 </form>
-                <div className="ratings">{reviews.reverse().map(r => {
+                <div className="ratings">{reviews.slice().reverse().map(r => {
                     return <div key={r.objectId}>
                         <p>{r.username}: {r.review} <br/> Rating: {r.rating}/5 <br/> Created at: {r.createdAt}</p>
                         </div>

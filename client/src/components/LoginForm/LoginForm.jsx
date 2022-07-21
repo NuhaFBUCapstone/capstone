@@ -21,6 +21,7 @@ export default function LoginForm(props) {
                     "password" : password.current.value
                     })
                 props.setSessionToken(res.data.sessionToken)
+                localStorage.setItem('sessionToken', res.data.sessionToken);
                 navigate("/home")
             } catch (err) {
                 alert("Wrong username or password.")
@@ -39,6 +40,7 @@ export default function LoginForm(props) {
                     "password" : password.current.value
                     })
                 props.setSessionToken(res.data.sessionToken)
+                localStorage.setItem('sessionToken', res.data.sessionToken);
                 navigate("/home")
             } catch (err) {
                 alert(err.response.data)
@@ -48,6 +50,7 @@ export default function LoginForm(props) {
 
 
     return (
+        <div>
         <form onSubmit={(e) => {
             e.preventDefault();
             if (!(username.current.value && password.current.value)) return;
@@ -71,9 +74,11 @@ export default function LoginForm(props) {
         }
         <br></br>
         <button type="submit">{log ? "Login" : "Register"}</button>
-        <div>{log ? "Don't have an account?" : "Already have an account?"} <button onClick={() => {
+        </form>
+        <div>{log ? "Don't have an account?" : "Already have an account?"} <button className="link" 
+        onClick={() => {
             setLog(!log)
-        }} className="link">Click here</button></div>
-      </form>
+        }}>Click here</button></div>
+    </div>
     )
 }

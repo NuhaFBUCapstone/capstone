@@ -86,12 +86,12 @@ export default function Library({sessionToken}) {
 
     return (
         <div className="library">
-            <div className={sessionToken==="" ? "logged-out" : "hidden"}>
+            <div className={sessionToken===null ? "logged-out" : "hidden"}>
                 <div>Must be logged in to view this page.
                 <br></br>
                 <Link to="/">login here</Link></div>
             </div> 
-            <div className={sessionToken==="" ? "hidden" : "flex"}>  
+            <div className={sessionToken===null ? "hidden" : "flex"}>  
                 <div className="library-side">
                     <p id="header">Lists:</p>
                     {Object.keys(books).map(l => {

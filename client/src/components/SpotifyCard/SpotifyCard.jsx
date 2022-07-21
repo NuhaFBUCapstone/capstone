@@ -6,7 +6,7 @@ import axios from "axios"
 export default function SpotifyCard({song}) {
     return (
         <div className="sp-card">
-            {/* get image from another api call to backend*/}
+            {/* TODO: get image from another api call to backend*/}
             {song.name} by {song.artists[0].name}
         </div>
     )
