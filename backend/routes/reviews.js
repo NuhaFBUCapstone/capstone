@@ -26,6 +26,7 @@ router.post('/add/:id', async (req, res) => {
         //create Review
         const Review = Parse.Object.extend("Reviews")
         let review = new Review()
+        console.log(req.body.rating)
         review.set("bookId", req.params.id)
         review.set("userId", userId)
         review.set("rating", req.body.rating)
@@ -40,11 +41,6 @@ router.post('/add/:id', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        // let query = new Parse.Query("_Session")
-        // query.equalTo("sessionToken", req.body.sessionToken)
-        // let userId = await query.first({useMasterKey : true})
-        // //get user id using session
-        // userId = userId.attributes.user.id
         let reviewQuery = new Parse.Query("Reviews")
         reviewQuery.equalTo("bookId", req.params.id)
         const review = await reviewQuery.find({useMasterKey : true})
