@@ -5,9 +5,6 @@ var cors = require('cors');
 
 router.use(cors())
 
-const MASTERKEY = "6wssvUvxnn7VBB0mUhboQM7F7TaaBKk8sU1Ic6vE"
-Parse.initialize("3PRkrcUCakVV2GzHDYS5svrNa7CK5TBD7WfiNogY", "QThaAFJyq0JMnn4yytCSPJUt9kdFqffclXAZeYBA", MASTERKEY);
-
 /**
  * create review and rating
  */
@@ -26,7 +23,6 @@ router.post('/add/:id', async (req, res) => {
         //create Review
         const Review = Parse.Object.extend("Reviews")
         let review = new Review()
-        console.log(req.body.rating)
         review.set("bookId", req.params.id)
         review.set("userId", userId)
         review.set("rating", req.body.rating)
