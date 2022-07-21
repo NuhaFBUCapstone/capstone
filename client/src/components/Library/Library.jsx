@@ -22,7 +22,7 @@ export default function Library({sessionToken}) {
         }
     }
     useEffect(() => {
-        if (sessionToken!=="") getLists()
+        if (sessionToken!==null) getLists()
       },[])
 
 
