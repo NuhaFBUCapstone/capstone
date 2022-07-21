@@ -146,7 +146,7 @@ export default function BookDetail(props) {
                         <br/> 
                         {r.rating===0 ? "" : `Rating: ${r.rating}/5`} 
                         {r.rating===0 ? "" : <br/>} 
-                        Created at: {r.createdAt}</p>
+                        Created at: {new Date(Date.parse(r.createdAt)).toLocaleString()}</p>
                         </div>
                 })}</div>
             </div>
